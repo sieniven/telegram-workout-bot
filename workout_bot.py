@@ -137,10 +137,13 @@ class WorkoutBot():
         chat = update.effective_chat
         chat_title = str(chat.title)
         index = 1
-        if chat_title in self.chatgroups.keys():
+
+        if (self.check_group_registered(chat_title)):
             if self.chatgroups[chat_title] in self.db:
                 for user in self.db[self.chatgroups[chat_title]]:
-                    msg += f"{index}. {self.db[self.chatgroups[chat_title]][user][0]} has {self.db[self.chatgroups[chat_title]][user][1]} points\n"
+                    msg += f"{index}. {self.db[self.chatgroups[chat_title]][user][0]} currently has {self.db[self.chatgroups[chat_title]][user][1]} points!\n"
+            else:
+                return False
         return
     """
     takes a ChatMemberUpdated instance and extracts whether the 'old_chat_member' was a member of the chat and whether 
