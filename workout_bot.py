@@ -133,18 +133,6 @@ class WorkoutBot():
         date_time_str = date_time.strftime('%b %d %Y %I:%M%p')
         return date_time_str
 
-    def process_leaderboard(self, update: Update, context: CallbackContext):
-        chat = update.effective_chat
-        chat_title = str(chat.title)
-        index = 1
-
-        if (self.check_group_registered(chat_title)):
-            if self.chatgroups[chat_title] in self.db:
-                for user in self.db[self.chatgroups[chat_title]]:
-                    msg += f"{index}. {self.db[self.chatgroups[chat_title]][user][0]} currently has {self.db[self.chatgroups[chat_title]][user][1]} points!\n"
-            else:
-                return False
-        return
     """
     takes a ChatMemberUpdated instance and extracts whether the 'old_chat_member' was a member of the chat and whether 
     the 'new_chat_member' is a member of the chat. returns None, if the status didn't change
@@ -375,6 +363,29 @@ class WorkoutBot():
         else:
             update.message.reply_text(
                 f"{name}, you have to register your team in the workout challenge first!")
+
+    def process_leaderboard(self, update: Update, context: CallbackContext):
+        chat = update.effective_chat
+        chat_title = str(chat.title)
+        index = 1
+        username = update.effective_user.username
+        logger.info(f"Received request from {username} to get current leaderboard.")
+        msg = "Current leaderboard: \n"
+        temp_list = []
+
+        if (self.check_group_registered(chat_title)):
+            if self.chatgroups[chat_title] in self.db:
+                for user in self.db[self.chatgroups[chat_title]]:
+                    points = self.db[self.chatgroups[chat_title]][user][1]
+                    temp_list.append((user, points))
+
+                ordered_list = sorted(temp_list, key=lambda x :(-x[1], x[0]))
+                
+                for element in ordered_list:
+                    msg += f"{index}. {self.db[self.chatgroups[chat_title]][element[0]][0]} - {element[1]} points\n"
+                    index += 1
+                
+                update.message.reply_text(msg)
 
 print("Workout bot started!")
 workout_bot = WorkoutBot()
