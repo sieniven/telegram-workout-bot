@@ -28,3 +28,9 @@
 2022-02-20 10:09:13,094 - telegram.vendor.ptb_urllib3.urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.connection.VerifiedHTTPSConnection object at 0x0000012FD037EB80>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed')': /bot5170999625:AAHC47FziHEpapGE5XoU4CmrtXDXMgy5V7c/getUpdates
 2022-02-20 10:09:13,095 - telegram.vendor.ptb_urllib3.urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.connection.VerifiedHTTPSConnection object at 0x0000012FD037ECD0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed')': /bot5170999625:AAHC47FziHEpapGE5XoU4CmrtXDXMgy5V7c/getUpdates
 2022-02-20 10:09:13,095 - telegram.ext.updater - ERROR - Error while getting Updates: urllib3 HTTPError HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5170999625:AAHC47FziHEpapGE5XoU4CmrtXDXMgy5V7c/getUpdates (Caused by NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.connection.VerifiedHTTPSConnection object at 0x0000012FD037EE20>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+2022-02-20 10:12:59,455 - telegram.ext.updater - INFO - Received signal 2 (SIGINT), stopping...
+2022-02-20 10:12:59,455 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2022-02-20 10:17:50,761 - apscheduler.scheduler - INFO - Scheduler started
+2022-02-20 10:18:26,981 - telegram.ext.updater - INFO - Received signal 2 (SIGINT), stopping...
+2022-02-20 10:18:26,981 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2022-02-20 10:18:27,143 - telegram.ext.updater - WARNING - Exiting immediately!
